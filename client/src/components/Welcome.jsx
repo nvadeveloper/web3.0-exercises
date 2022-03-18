@@ -27,14 +27,14 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 
 const Welcome = () => {
 
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, isLoading } = useContext(TransactionContext);
 
     const handelSubmit = (e) => {
-      const { addressTo, amount, keyoword, message } = formData;
+      const { addressTo, amount, keyword, message } = formData;
 
       e.preventDefault();
 
-      if (!addressTo || !amount || !keyoword || !message) return;
+      if (!addressTo || !amount || !keyword || !message) return;
 
       sendTransaction();
     }
@@ -104,12 +104,12 @@ const Welcome = () => {
                 <div className='p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism'>
                   <Input placeholder='Address To' name='addressTo' type='text' handleChange={handleChange} />
                   <Input placeholder='Amount (ETH)' name='amount' type='number' handleChange={handleChange} />
-                  <Input placeholder='Keyoword (GIF)' name='keyoword' type='text' handleChange={handleChange} />
+                  <Input placeholder='Keyoword (GIF)' name='keyword' type='text' handleChange={handleChange} />
                   <Input placeholder='Enter Message' name='message' type='text' handleChange={handleChange} />
 
                   <div className='h-[1px] w-full bg-gray-400 my-2'></div>
 
-                  {false ? (
+                  {isLoading ? (
                     <Loader />
                   ) : (
                     <button type='button' className='text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer' onClick={handelSubmit}>

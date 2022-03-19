@@ -13,8 +13,7 @@ const useFetch = ({ keyword }) => {
             // const { data } = response.json();
             const giphyAPI = response.url;
 
-            function setup(){
-
+            const setup = () => {
                 fetch(giphyAPI)
                 .then(response => {
                     return response.json();
@@ -25,7 +24,7 @@ const useFetch = ({ keyword }) => {
 
                 .catch(err => console.log(err));
             }
-
+            
             setup();
         } catch (error) {
             console.log(error);
